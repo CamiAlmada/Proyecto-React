@@ -1,22 +1,40 @@
 import { useState, useEffect } from "react"
 import ItemList from "../ItemList/ItemList"
-import {getItems} from '../../asynMosk'
+import {getItems, getItemsByCategory} from '../../asynMosk'
+import{useParams} from 'react-router-dom'
+
+
 
 
 
 const ItemsListContainer =({greeting})=>{
     const [items, setItems]= useState([])
 
+
+  const {categoryId}=useParams()
   
   
   useEffect (()=>{
-    getItems().then(response =>{
-      setItems(response)
-    })
-    .catch(error=>{
-      console.log("Error");
-    }) 
-  }, [])
+
+    if(categoryId){
+      getItemsByCategory(categoryId).then(response =>{
+        setItems(response)
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+      
+    } else{
+      getItems().then(response =>{
+        setItems(response)
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+
+    }
+     
+  }, [categoryId])
 
 
     return (
