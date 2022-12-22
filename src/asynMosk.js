@@ -3,36 +3,40 @@
 
 const items =[{
     id:"1",
-    name: "Camisetas",
+    name: "Camiseta Titular",
     description: "Camiseta Talleres Givova Titular 2022",
-    imagen: './images/titular.webp',
+    category: "camisetas",
+    imagen: '/images/titular.webp',
     price:'$9500',
     stock: "50",
   },
   
   { 
     id:"2",
-    name: "Buzos",
+    name: "Canguro Talleres",
     description: "Buzo Givova Talleres Canguro Frisa",
-    imagen: './images/buzo.jpg',
+    category: "buzos",
+    imagen: '/images/buzo.jpg',
     price: '$12000',
     stock: "50",
   },
   
   {
     id:"3",
-    name: "Camperas",
+    name: "Campera Givova",
     description: "Campera Givova Talleres Inout Rustico",
-    imagen: './images/campera.jpg',
+    category: "camperas",
+    imagen: '/images/campera.jpg',
     price: '$15000',
-    stock: "50",
+    stock: "0",
   },
   
   {
     id:"4",
-    name: "Musculosas",
+    name: "Musculosa Femenina",
     description: "Musculosa Talleres Givova Entrenamiento",
-    imagen: './images/musculosas.jpg',
+    category: "musculosas",
+    imagen: '/images/musculosas.jpg',
     price:'$8500',
     stock: "50",
   }]
@@ -48,11 +52,20 @@ export const getItems = ()=>{
   }
 
 
-export const getItemsById =(id="1")=>{
-    
-  return new Promise((resolve)=>{
-    setTimeout(()=>{  
-      resolve(items.find(item=>item.id===id))
+export const getItemsById=(id)=>{
+  
+  return new Promise (resolve =>{
+    setTimeout(()=>{
+      resolve(items.find(item=>{
+        return item.id===id})) }, 2000)
+
+  })
+}    
+
+export const getItemsByCategory =(categoryId)=>{
+  return new Promise(resolve =>{
+    setTimeout(()=>{
+      resolve (items.filter(item=>item.category===categoryId))
     }, 2000)
   })
-} 
+}

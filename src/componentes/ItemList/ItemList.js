@@ -1,21 +1,23 @@
-import Items from "../Items/Items" 
+ import Items from "../Items/Items"
 
-const ItemList =({items})=>{
+
+ const ItemList =({ items })=>{
     return(
+        
         <div>
-             <h1>Artículos Disponibles</h1>
+           {
+            items.map(item=>
 
-             {items.map (item => (
+            <Items key={item.id} item={item}/>
 
-                <Items key={item.id} item= {item}/>
+            )
+           }
 
-                
-            ))}
-   
-                
-            </div>
-    )      
+
+           </div>
+           
+     )      
        
-}
+ }
 
-export default ItemList
+ export default ItemList

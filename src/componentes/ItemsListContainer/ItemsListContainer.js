@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react"
-import ItemList from "../ItemList/ItemList"
-import {getItems, getItemsByCategory} from '../../asynMosk'
-import{useParams} from 'react-router-dom'
+ 
+ import './itemsListContainer.css'
+ import { useState, useEffect } from "react"
+ import ItemList from "../ItemList/ItemList"
+ import {getItems, getItemsByCategory} from '../../asynMosk'
+ import{useParams} from 'react-router-dom'
 
 
+ const ItemsListContainer =({greeting})=>{
 
-
-
-const ItemsListContainer =({greeting})=>{
-    const [items, setItems]= useState([])
+   const [items, setItems]= useState([])
 
 
   const {categoryId}=useParams()
@@ -16,37 +16,46 @@ const ItemsListContainer =({greeting})=>{
   
   useEffect (()=>{
 
-    if(categoryId){
-      getItemsByCategory(categoryId).then(response =>{
+
+    if(categoryId) {
+      getItemsByCategory(categoryId)
+      .then(response=>{
         setItems(response)
       })
+
       .catch(error=>{
-        console.log(error);
+        console.log(error)
       })
-      
+
     } else{
-      getItems().then(response =>{
+
+      getItems()
+      .then(response=>{
         setItems(response)
       })
+
       .catch(error=>{
-        console.log(error);
+        console.log(error)
       })
-
     }
-     
-  }, [categoryId])
 
 
-    return (
+  },[categoryId])
+
+
+   return (
         
-        <div>
-            <h1 style= {{color: "blue"}} >{greeting}</h1>
-            <ItemList items={items} />
+       <div>
+             <h1 style= {{color: "blue"}} >{greeting}</h1> 
+         
 
+           <h1 className="list">Adquirí toda la indumentaria matadora aquí</h1>
+           <ItemList items={items}/>
            
-        </div>
+           
+       </div> 
        
     )
 }
 
-export default ItemsListContainer 
+ export default ItemsListContainer 

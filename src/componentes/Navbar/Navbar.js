@@ -1,19 +1,40 @@
 import './Navbar.css'
 import Button from '../Button/Button'
-import CartWidget from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 
-const Navbar = (props)=>{
+
+
+
+const Navbar = ()=>{
     return (
         <nav>
-          <h1 className="title">La Tienda Virtual</h1>
-         <Button  colorText= 'blue'>Camisetas</Button>
-         <Button  colorText= 'black'>Buzos</Button>
-         <Button  colorText= 'blue'>Camperas</Button>
-         <Button  colorText= 'black'>Musculosas</Button>
+           <div>
+             <h1 className="title">La Tienda Virtual</h1>
+          </div>
 
-         <CartWidget/>
+          <div >
+
+            <Link to='/category/camisetas' > 
+               <Button  colorText= 'blue'  className='button'>Camisetas</Button>
+            </Link>
+            <Link to='/category/buzos'>
+              <Button  colorText= 'black'>Buzos</Button>
+             </Link>
+            <Link to='/category/camperas'> 
+              <Button  colorText= 'blue'>Camperas</Button>
+            </Link>
+            <Link to='/category/musculosas'> 
+              <Button  colorText= 'black'>Musculosas</Button> 
+            </Link>  
+
+           <Link to='/'> 
+             <Button  colorText= 'blue'>Volver al Inicio</Button> 
+           </Link>   
+
+        </div>   
          
+        
         </nav>
     )
 

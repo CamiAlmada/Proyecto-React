@@ -2,3 +2,24 @@
     color: blue;
 }
 
+.button{
+    font-size: medium;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    
+
+}
+
+.button:hover{
+    background-color: rgb(45, 0, 128);
+
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+
+}
+
