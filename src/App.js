@@ -4,42 +4,42 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Navbar from './componentes/Navbar/Navbar'  
 import ItemsListContainer from './componentes/ItemsListContainer/ItemsListContainer';
 import ItemsDetailContainer from './componentes/ItemsDetailContainer/ItemsDetailContainer';
-import MercadoLibre from './componentes/MercadoLibre/MercadoLibre';
+import Login from './componentes/Login/Login';
+import { AuthProvider } from './context/AuthContext';
+import MercadoLibre from'./componentes/MercadoLibre/MercadoLibre.js'
+import { CartProvider } from './context/CartContext';
 
 
+function App() { 
 
-
-
-function App() {
-
-
+  
   return (
     <div className="App">
 
-    
-
+      <CartProvider>
+   
+       <AuthProvider>
 
       <BrowserRouter>
 
       <Navbar/>
-
-
+        
         <Routes>
           <Route path='/'element= {<ItemsListContainer greeting="¡Bienvenido Matador/a!"/>}/>
           <Route path='/category/:categoryId' element={<ItemsListContainer/>}/>
           <Route path='/detail/:itemId'element={<ItemsDetailContainer/>}/>
+          <Route path = '/mercadolibre'element = {<MercadoLibre/>}/>
+          <Route path= '/login' element={<Login/>}/>
         </Routes>
+
+        
       </BrowserRouter> 
 
+      </AuthProvider>
       
-      
-
-      <MercadoLibre/>
-      
+      </CartProvider>
+        
     </div>
-
-  
-
 
   );
 }

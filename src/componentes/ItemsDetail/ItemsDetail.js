@@ -1,14 +1,27 @@
 import ItemCount from "../ItemCount/ItemCount"
 import CartWidget from "../CartWidget/CartWidget"
+import { useState, useContext } from "react"
+import { Link } from "react-router-dom"
+import { CartContext } from "../../context/CartContext"
 
 
-const ItemsDetail =({id, name, imagen, description, price, stock })=>{
-   
+
+const ItemsDetail =({name, id, stock, description, price, imagen})=>{
+
+   const {addItem} = useContext(CartContext)
+
+
+  const [cantidadToAdd, setCantidadOnAdd] = useState(0)
+  console.log(cantidadToAdd);
+
    
    
     const handleOnAdd=(cantidad)=>{
         console.log("Se agrego al carrito correctamente " + cantidad);
+        setCantidadOnAdd(cantidad)
       
+
+         addItem({id,name, price, cantidad})
       }
 
 
@@ -21,7 +34,13 @@ const ItemsDetail =({id, name, imagen, description, price, stock })=>{
 
               <CartWidget/>
 
-           {stock >0 ? <ItemCount initial={0} stock = {50} onAdd = {handleOnAdd} /> : <h3>SIN STOCK</h3>  }   
+           {stock >0 ? <ItemCount  initial={0} stock = {50} onAdd = {handleOnAdd} /> 
+           : <h3>SIN STOCK</h3>  }  
+
+          
+                  <Link className= 'button' to='/cart'>Finalizar compra</Link>
+
+                 
 
                 </div>
     )

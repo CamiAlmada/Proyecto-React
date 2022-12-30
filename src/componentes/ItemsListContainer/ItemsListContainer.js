@@ -14,9 +14,15 @@
   const {categoryId}=useParams()
   
   
+  // useEffect (()=>{
+
+  //   const onResize=()=>console.log("cambie tamaño de ventana");
+
+  //   window.addEventListener('resize', onResize)
+
+  //   return ()=> window.addEventListener('resize', onResize  )},[])
+
   useEffect (()=>{
-
-
     if(categoryId) {
       getItemsByCategory(categoryId)
       .then(response=>{
@@ -46,7 +52,7 @@
    return (
         
        <div>
-             <h1 style= {{color: "blue"}} >{greeting}</h1> 
+             <h1 className='title' style= {{color: "blue"}} >{greeting}</h1> 
          
 
            <h1 className="list">Adquirí toda la indumentaria matadora aquí</h1>

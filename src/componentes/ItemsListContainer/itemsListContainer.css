@@ -2,11 +2,24 @@
     color: blue;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
+   
 }
 
 .list_items{
+   
 
     color: darkblue;
-    
+    width: 350px;
+    height: 400px;
+    margin: 20px;
+    border-bottom: solid 12px gray;
+    border-top: solid 5px #4c4c4c;
+    border-right: solid 10px #303030;
+    border-left: solid 12px #898686;
+    border-radius: 10px;
+    margin-left: 450px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
     
 }

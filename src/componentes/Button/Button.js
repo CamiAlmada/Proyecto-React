@@ -3,10 +3,11 @@
 const Button =(props)=>{
     return (
 
-        <button className="button" style=  {{color: props.colorText }} >{props.children}</button>
+        <button className="button"  >{props.children}</button>
         
 
     )
         
 }
 export default Button
+// style=  {{color: props.colorText }}
