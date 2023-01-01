@@ -7,7 +7,7 @@ const items =[{
     description: "Camiseta Talleres Givova Titular 2022",
     category: "camisetas",
     imagen: '/images/titular.webp',
-    price:'$9500',
+    price:'9500',
     stock: "50",
   },
   
@@ -17,7 +17,7 @@ const items =[{
     description: "Buzo Givova Talleres Canguro Frisa",
     category: "buzos",
     imagen: '/images/buzo.jpg',
-    price: '$12000',
+    price: '12000',
     stock: "50",
   },
   
@@ -27,7 +27,7 @@ const items =[{
     description: "Campera Givova Talleres Inout Rustico",
     category: "camperas",
     imagen: '/images/campera.jpg',
-    price: '$15000',
+    price: '15000',
     stock: "0",
   },
   
@@ -37,7 +37,7 @@ const items =[{
     description: "Musculosa Talleres Givova Entrenamiento",
     category: "musculosas",
     imagen: '/images/musculosas.jpg',
-    price:'$8500',
+    price:'8500',
     stock: "50",
   }]
   

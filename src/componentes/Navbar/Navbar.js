@@ -5,9 +5,6 @@ import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 
 
-
-
-
 const Navbar = ()=>{
 
   const {getCantidad}=useContext(CartContext)
@@ -42,16 +39,18 @@ const Navbar = ()=>{
              <Button  >Mercado Libre</Button> 
            </Link>  
 
-           <div className='title'>
-            Carrito:{totalCantidad}
-            <img style={{width : "30px"}} src='/images/carrito.png' alt='Carrito'/>
-           </div>
+           <Link to='/cart' className='cart'>
+
+              <div >
+               Carrito:{totalCantidad}
+               <img style={{width : "30px"}} src='/images/carrito.png' alt='Carrito'/>
+              </div>
+
+            </Link>
 
            <Link to='/Login'>
             Iniciar Sesión
            </Link>
-
-
 
         </div>   
          

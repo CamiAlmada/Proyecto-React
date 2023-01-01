@@ -34,9 +34,11 @@ const Login =()=>{
                     <form onSubmit= {handleSubmit}>
                         Usuario:
                         <input value= {username} onChange={(e)=>setUsername(e.target.value)}/>  
-
+                         <br></br><br></br>
                         Contraseña:  
                         <input value= {password} onChange = {(e)=>setPassword(e.target.value)}/>
+                        
+                        <br/>
                         <button type= 'submit'>Aceptar</button>
                     </form>
                 </div>

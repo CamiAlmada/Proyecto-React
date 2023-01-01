@@ -8,10 +8,14 @@ import Login from './componentes/Login/Login';
 import { AuthProvider } from './context/AuthContext';
 import MercadoLibre from'./componentes/MercadoLibre/MercadoLibre.js'
 import { CartProvider } from './context/CartContext';
+import Cart from './componentes/Cart/Cart';
+import Checkout from './componentes/Checkout/Checkout';
+
 
 
 function App() { 
 
+ 
   
   return (
     <div className="App">
@@ -30,6 +34,8 @@ function App() {
           <Route path='/detail/:itemId'element={<ItemsDetailContainer/>}/>
           <Route path = '/mercadolibre'element = {<MercadoLibre/>}/>
           <Route path= '/login' element={<Login/>}/>
+          <Route path= '/cart' element={<Cart/>}/>
+          <Route path= '/checkout' element={<Checkout/>}/>
         </Routes>
 
         
@@ -38,6 +44,7 @@ function App() {
       </AuthProvider>
       
       </CartProvider>
+
         
     </div>
 

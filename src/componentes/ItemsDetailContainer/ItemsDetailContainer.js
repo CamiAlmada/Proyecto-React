@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
-import { getItemsById } from "../../asynMosk"
 import ItemsDetail from "../ItemsDetail/ItemsDetail"
 import {useParams} from 'react-router-dom'
-
-
+import { getDoc, doc } from "firebase/firestore"
+import { db } from "../../service/firebase/firebaseConfig"
 
 
 const ItemsDetailContainer =()=>{
@@ -14,20 +13,29 @@ const ItemsDetailContainer =()=>{
    const {itemId}=useParams()
 
     useEffect(()=>{
-      getItemsById(itemId)
-      .then(response=>{
-        setItem(response)
 
-      })
+      const docRef=  doc(db, 'items',itemId)
 
-    .catch(error=>{
-      console.log(error)
-    })
+      getDoc  ( docRef ).then(doc=>{
 
-    .finally(()=>{
-      setIsLoading(false)
-    })
-    }, [itemId])
+        const data =doc.data()
+       
+        const itemsAdapted={id:doc.id, ...data, itemId}
+        
+
+        setItem(itemsAdapted)
+
+        })
+
+        .catch(error=>{
+          console.log(error);
+        })
+
+        .finally(()=>{
+          setIsLoading(false)
+        })
+     
+       }, [itemId])
 
 
     if(isLoading){

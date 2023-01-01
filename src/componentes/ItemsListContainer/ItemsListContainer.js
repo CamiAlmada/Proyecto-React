@@ -2,8 +2,9 @@
  import './itemsListContainer.css'
  import { useState, useEffect } from "react"
  import ItemList from "../ItemList/ItemList"
- import {getItems, getItemsByCategory} from '../../asynMosk'
  import{useParams} from 'react-router-dom'
+ import { getDocs,collection,query,where,orderBy } from 'firebase/firestore'
+ import { db } from '../../service/firebase/firebaseConfig'
 
 
  const ItemsListContainer =({greeting})=>{
@@ -14,37 +15,28 @@
   const {categoryId}=useParams()
   
   
-  // useEffect (()=>{
-
-  //   const onResize=()=>console.log("cambie tamaño de ventana");
-
-  //   window.addEventListener('resize', onResize)
-
-  //   return ()=> window.addEventListener('resize', onResize  )},[])
 
   useEffect (()=>{
-    if(categoryId) {
-      getItemsByCategory(categoryId)
-      .then(response=>{
-        setItems(response)
-      })
 
-      .catch(error=>{
-        console.log(error)
-      })
 
-    } else{
+    const collectionRef = categoryId 
+        ? query(collection(db, 'items'), where('category', '==', categoryId))
+        : query(collection(db, 'items'), orderBy('name'))
 
-      getItems()
-      .then(response=>{
-        setItems(response)
-      })
+      getDocs(collectionRef)
+        .then(response => {
+          const itemsAdapted = response.docs.map(doc => {
+            const data = doc.data()
 
-      .catch(error=>{
-        console.log(error)
-      })
-    }
+            return { id: doc.id, ...data}
+          })
 
+          setItems(itemsAdapted)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        
 
   },[categoryId])
 

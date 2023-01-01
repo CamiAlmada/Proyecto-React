@@ -1,6 +1,6 @@
  import { useState, createContext } from "react"
  
-export const CartContext =  createContext()
+export const CartContext =  createContext({cart:[]})
 
 export const CartProvider =({children})=>{
 
@@ -36,10 +36,20 @@ export const CartProvider =({children})=>{
 
     }
 
+    const getTotal = () => {
+      let acc = 0
+
+      cart.forEach(product => {
+        acc += product.cantidad * product.price
+      })
+
+      return acc
+    }
+
 
     return(
 
-        <CartContext.Provider value= {{cart, addItem , removeItem, getCantidad}}>
+        <CartContext.Provider value= {{cart, addItem , removeItem, getCantidad, getTotal}}>
             {children}
         </CartContext.Provider>
     )
