@@ -69,34 +69,19 @@ const Checkout = () => {
     
                 const orderRef = collection(db, 'orders')
     
-                const orderAdded = await addDoc(orderRef, objOrder)
-    
-                clearCart()
-
-                setTimeout(() => {
-                    navigate('/')
-                }, 2000)
+                const orderAdded = await addDoc(orderRef, objOrder)  
 
                 console.log(orderAdded.id)
+                alert('Pedido confirmado con exito!. Su numero de orden es: ' + orderAdded.id)
             } else {
                 console.error('Hay productos fuera de stock')
             }
         } catch (error) {
             console.error(error)
-        } finally {
-            /* reiniciar formulario */
-            document.getElementById('name').value = ''
-            document.getElementById('email').value = ''
-            document.getElementById('phone').value = ''
-
-            setUser({
-                name:"",
-                email:"",
-                phone:""
-            })  
-
-            alert('Pedido confirmado con exito!')
-
+        } finally {   
+            clearCart()  
+            /* alert('Pedido confirmado con exito!') */
+            navigate('/')
             setLoading(false)
         }
     } 
