@@ -7,27 +7,21 @@ import { CartContext } from "../../context/CartContext"
 
 const ItemsDetail =({name, id, stock, description, price, imagen})=>{
 
-   const {addItem} = useContext(CartContext)
-
+  const {addItem} = useContext(CartContext)
 
   const [cantidadToAdd, setCantidadOnAdd] = useState(0)
-  console.log(cantidadToAdd);
-
+       console.log(cantidadToAdd);
    
-   
-    const handleOnAdd=(cantidad)=>{
+  const handleOnAdd=(cantidad)=>{
         console.log("Se agrego al carrito correctamente " + cantidad);
         setCantidadOnAdd(cantidad)
       
 
-         addItem({id,name, price, cantidad})
+         addItem({id,name, price, cantidad, imagen})
       }
 
-
-
-    
-
        return(
+
         <div key={id}>
                  <h1>{name}</h1>
                  <img style={{width:"350px"}} src= {imagen} alt={name} /> 
@@ -37,10 +31,9 @@ const ItemsDetail =({name, id, stock, description, price, imagen})=>{
               <CartWidget/>
 
            {stock >0 ? <ItemCount  initial={0} stock = {50} onAdd = {handleOnAdd} /> 
-           : <h3>SIN STOCK</h3>  }  
-                 
+           : <h3>SIN STOCK</h3>  }          
 
-                </div>
+        </div>
     )
 }
 

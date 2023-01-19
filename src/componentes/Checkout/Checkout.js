@@ -10,20 +10,34 @@ const Checkout = () => {
 
     const navigate = useNavigate()
 
+    const [user, setUser] = useState({
+        name:"",
+        email:"",
+        phone:""        
+      }) 
+
+    const handleInputChange = (event) => {
+        setUser({
+            ...user,
+            [event.target.name] : event.target.value
+        })
+    } 
+
     
-    const handleCreateOrder = async () => {
-        setLoading(true)
+    const handleCreateOrder = async (e) => {
+        e.preventDefault()
+        setLoading(true)  
 
         try {
             const objOrder = {
                 buyer: {
-                    name: ' Camila Almada',
-                    email: 'cami@gmail.com',
-                    phone: '351245855'
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone
                 },
                 items: cart,
-                total: getTotal()
-            }
+                total: getTotal()                
+            }            
     
             const batch = writeBatch(db)
     
@@ -70,6 +84,19 @@ const Checkout = () => {
         } catch (error) {
             console.error(error)
         } finally {
+            /* reiniciar formulario */
+            document.getElementById('name').value = ''
+            document.getElementById('email').value = ''
+            document.getElementById('phone').value = ''
+
+            setUser({
+                name:"",
+                email:"",
+                phone:""
+            })  
+
+            alert('Pedido confirmado con exito!')
+
             setLoading(false)
         }
     } 
@@ -85,14 +112,14 @@ const Checkout = () => {
             <h1 className='title'>Complete con sus datos:</h1>
             <form >
 
-                Nombre:
-                <input />
+                Nombre:                
+                <input required placeholder='Nombre' type="text" id='name' name='name' onChange={handleInputChange}></input>
                 <br></br>
                 Email:
-                <input/>
+                <input required placeholder='Email' type="text" id='email' name='email' onChange={handleInputChange}></input>                
                 <br></br>
                 Tel.:
-                <input/>
+                <input required placeholder='Telefono' type="text" id='phone' name='phone' onChange={handleInputChange}></input>                
                 <br></br>
                 
                 <button onClick={handleCreateOrder}>Confirmar Pedido</button>
